@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 NBA Team Duel
 
 A web app that allows users to battle their favorite NBA teams against each other.
@@ -33,7 +32,7 @@ MIT
 
 ## Demo
 
-https://nba-team-duel.vercel.app/
+[NBA Team Duel Website](https://nba-team-duel-7hin.vercel.app/)
 
 ## Deploy
 
@@ -52,4 +51,4 @@ https://nba-team-duel.vercel.app/
 - Deploy the app
 =======
 # NBA-Team-Duel
->>>>>>> 24adbed6c20a1ae8ab4e1ff12fb585ea677cc8ef
+
