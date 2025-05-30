@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import TeamCards from '@/components/TeamCards'
-import SelectedTeamsSummary from '@/components/SelectedTeamsSummary'
+import TeamCards from '@/components/HomeComponents/TeamCards/TeamCards'
+import SelectedTeamsSummary from '@/components/HomeComponents/SelectedTeamsSummary/SelectedTeamsSummary'
 
 export const Route = createFileRoute('/')({
   component: App,

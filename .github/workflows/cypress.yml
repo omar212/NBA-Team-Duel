@@ -1,0 +1,36 @@
+# cypress.yml
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Cypress Run
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm install --legacy-peer-deps
+          build: npm run build
+          start: npm run preview
+          wait-on: 'http://localhost:4173/'
+        env:
+          VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
+          VITE_CLERK_SECRET_KEY: ${{ secrets.VITE_CLERK_SECRET_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_BALL_DONT_LIE_API_BASE_URL: ${{ secrets.VITE_BALL_DONT_LIE_API_BASE_URL }}
+          VITE_BALL_DONT_LIE_API_TOKEN: ${{ secrets.VITE_BALL_DONT_LIE_API_TOKEN }}

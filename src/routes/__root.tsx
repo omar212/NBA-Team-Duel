@@ -1,10 +1,10 @@
 // _root.tsx
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import Header from '../components/Header'
-import TanStackQueryLayout from '../integrations/tanstack-query/layout.tsx'
-import ClerkProvider from '../integrations/clerk/provider.tsx'
-import { useCreateUserRecord } from '../hooks/useCreateUserRecord'
+import Header from '@/components/Header/Header'
+import TanStackQueryLayout from '@/integrations/tanstack-query/layout.tsx'
+import ClerkProvider from '@/integrations/clerk/provider.tsx'
+import { useCreateUserRecord } from '@/hooks/useCreateUserRecord'
 import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {

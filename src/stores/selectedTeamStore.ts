@@ -4,7 +4,13 @@ import { persist } from 'zustand/middleware'
 interface Team {
   id: number
   conference: 'East' | 'West'
-  division: 'Southeast' | 'Southwest' | 'Northwest' | 'Pacific' | 'Central'
+  division:
+    | 'Southeast'
+    | 'Southwest'
+    | 'Northwest'
+    | 'Pacific'
+    | 'Central'
+    | 'Atlantic'
   city: string
   name: string
   full_name: string
@@ -12,7 +18,7 @@ interface Team {
 }
 
 interface SelectedTeamsState {
-  selectedTeams: Team[]
+  selectedTeams: Array<Team>
   selectTeam: (team: Team) => void
   removeTeam: (teamId: number) => void
   resetTeams: () => void
