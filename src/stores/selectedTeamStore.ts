@@ -4,7 +4,13 @@ import { persist } from 'zustand/middleware'
 interface Team {
   id: number
   conference: 'East' | 'West'
-  division: 'Southeast' | 'Southwest' | 'Northwest' | 'Pacific' | 'Central'
+  division:
+    | 'Southeast'
+    | 'Southwest'
+    | 'Northwest'
+    | 'Pacific'
+    | 'Central'
+    | 'Atlantic'
   city: string
   name: string
   full_name: string
