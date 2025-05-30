@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useTeams } from '../hooks/useTeams'
 import * as NBAIcons from 'react-nba-logos'
 import { motion } from 'framer-motion'
-import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
+import { useTeams } from '../hooks/useTeams'
 import type { Team } from '@/types/Team'
+import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -116,7 +116,7 @@ export default function TeamCards() {
                 }
               }}
             >
-              {TeamIcon && <TeamIcon />}
+              <TeamIcon />
               <h2 className="text-white font-extrabold text-lg">{team.name}</h2>
             </motion.div>
           )

@@ -18,7 +18,7 @@ interface Team {
 }
 
 interface SelectedTeamsState {
-  selectedTeams: Team[]
+  selectedTeams: Array<Team>
   selectTeam: (team: Team) => void
   removeTeam: (teamId: number) => void
   resetTeams: () => void

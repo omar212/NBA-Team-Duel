@@ -1,13 +1,13 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
+import { FaSpinner } from 'react-icons/fa'
 import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 import { useTournamentStore } from '@/stores/useTournamentStore'
-import { useEffect, useState } from 'react'
 import { useGames } from '@/hooks/useGames'
 import { useGameStore } from '@/stores/gameStore'
 import TeamBattle from '@/components/TeamBattle'
 import TeamSide from '@/components/TeamSide'
 import { useBattleResultsStore } from '@/stores/battleResultsStore'
-import { FaSpinner } from 'react-icons/fa'
 import { getMostFrequentOpponentId } from '@/helper/getMostFrequent'
 import { findOpponentTeamDetails } from '@/helper/findOpponent'
 import GameResultText from '@/components/GameResultText'
@@ -43,7 +43,7 @@ function BattleComponent() {
     data: fetchedGames,
     refetch,
     isFetching,
-  } = useGames(season!, userTeam?.id, fetchEnabled)
+  } = useGames(season!, userTeam.id, fetchEnabled)
 
   useEffect(() => {
     if (fetchedGames) {
