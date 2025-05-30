@@ -39,6 +39,16 @@ function BattleComponent() {
 
   const userTeam = selectedTeams[currentRound]
 
+  if (selectedTeams.length < 5) {
+    return (
+      <div className="bg-[#1D428A] h-screen flex items-center justify-center text-white">
+        <p className="text-2xl font-bold">
+          Please select 5 teams from the list!
+        </p>
+      </div>
+    )
+  }
+
   const {
     data: fetchedGames,
     refetch,
@@ -89,16 +99,6 @@ function BattleComponent() {
     setCurrentRound(0)
     setBattleStarted(false)
     navigate({ to: '/' })
-  }
-
-  if (selectedTeams.length < 5) {
-    return (
-      <div className="bg-[#1D428A] h-screen flex items-center justify-center text-white">
-        <p className="text-2xl font-bold">
-          Please select 5 teams from the list!
-        </p>
-      </div>
-    )
   }
 
   if (!battleStarted) {
