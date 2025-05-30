@@ -6,8 +6,6 @@ import { useGames } from '@/hooks/useGames'
 import { useGameStore } from '@/stores/gameStore'
 import TeamBattle from '@/components/TeamBattle'
 import TeamSide from '@/components/TeamSide'
-import type { Team } from '@/types/Team'
-import { motion } from 'framer-motion'
 import { useUser } from '@clerk/clerk-react'
 import { useBattleResultsStore } from '@/stores/battleResultsStore'
 import { FaSpinner } from 'react-icons/fa'
@@ -29,7 +27,7 @@ function BattleComponent() {
     resetAllPoints,
     resetRoundPoints,
   } = useBattleResultsStore()
-  const { user } = useUser()
+
   const [currentRound, setCurrentRound] = useState(0)
   const [battleStarted, setBattleStarted] = useState(false)
   const [fetchEnabled, setFetchEnabled] = useState(false)
