@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NBA Team Duel
 
 A web app that allows users to battle their favorite NBA teams against each other.
@@ -49,3 +50,6 @@ https://nba-team-duel.vercel.app/
 - Create a new project on Supabase
 - Add the environment variables to the project
 - Deploy the app
+=======
+# NBA-Team-Duel
+>>>>>>> 24adbed6c20a1ae8ab4e1ff12fb585ea677cc8ef
