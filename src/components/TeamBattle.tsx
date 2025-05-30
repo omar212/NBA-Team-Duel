@@ -1,14 +1,15 @@
 import { useEffect, useMemo } from 'react'
+import * as NBAIcons from 'react-nba-logos'
+import { motion } from 'framer-motion'
+import { useUser } from '@clerk/clerk-react'
 import type { Team } from '@/types/Team'
 import type { Game } from '@/types/Game'
-import { motion } from 'framer-motion'
 import { useBattleResultsStore } from '@/stores/battleResultsStore'
-import { useUser } from '@clerk/clerk-react'
-import * as NBAIcons from 'react-nba-logos'
+
 interface TeamBattleProps {
   userTeam: Team
   opponentTeam: Team
-  games: Game[]
+  games: Array<Game>
   round: number
 }
 
@@ -78,7 +79,28 @@ function TeamBattle({ userTeam, opponentTeam, games, round }: TeamBattleProps) {
       <div className="text-center font-semibold mt-4">
         Round {round + 1} Series: {userRoundPoints} - {computerRoundPoints}
       </div>
-      <div className="mt-4 border p-4 rounded-xl bg-gray-100 shadow-md text-black grid grid-cols-4 gap-4">
+      <div
+        className="
+        mt-4 
+        border 
+        p-1 
+        rounded-xl 
+        bg-gray-100 
+        shadow-md 
+        text-black 
+        grid 
+        grid-cols-2
+        w-full 
+        gap-2
+
+
+        md:grid-cols-3
+        md:p-2
+
+        lg:grid-cols-4
+        lg:p-4
+      "
+      >
         {matchupResults.length > 0 ? (
           matchupResults.map((result, idx) => {
             const UserTeamIcon =
@@ -89,7 +111,31 @@ function TeamBattle({ userTeam, opponentTeam, games, round }: TeamBattleProps) {
             return (
               <motion.div
                 key={result.gameId}
-                className="m-1 flex flex-col items-center justify-around border-2 rounded-lg p-2 bg-white w-48 h-32 shadow"
+                className="
+                   
+                  flex 
+                  flex-col 
+                  items-center 
+                  justify-between 
+                  border-2
+                  gap-2
+                  rounded-lg 
+                  p-2 
+                  bg-white 
+                  w-full 
+                  h-full
+                  shadow-lg
+                  shadow-black/50
+
+                  md:w-52
+                  md:h-40
+                  md:justify-around
+
+                  lg:w-48
+                  lg:h-24
+                  lg:justify-around
+                  
+                "
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: idx * 0.2 }}
@@ -112,7 +158,7 @@ function TeamBattle({ userTeam, opponentTeam, games, round }: TeamBattleProps) {
                       : 'Tie'}
                 </span>
                 <div className="flex items-center justify-center gap-2">
-                  <UserTeamIcon size={25} />
+                  <UserTeamIcon size={30} />
                   <span className="font-bold text-lg">
                     {result.userTeamScore}
                   </span>
@@ -120,7 +166,7 @@ function TeamBattle({ userTeam, opponentTeam, games, round }: TeamBattleProps) {
                   <span className="font-bold text-lg">
                     {result.computerTeamScore}
                   </span>
-                  <ComputerTeamIcon size={25} />
+                  <ComputerTeamIcon size={30} />
                 </div>
               </motion.div>
             )

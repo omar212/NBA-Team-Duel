@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import type { Team } from '@/types/Team'
 import * as NBAIcons from 'react-nba-logos'
 import { useUser } from '@clerk/clerk-react'
+import type { Team } from '@/types/Team'
 
 export default function TeamSide({
   team,
@@ -14,12 +14,16 @@ export default function TeamSide({
   const TeamIcon = NBAIcons[team.abbreviation as keyof typeof NBAIcons]
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="h-full w-full  flex flex-col items-center justify-center align-center m-auto">
       <p className="font-semibold mb-2">
         Team {role === 'user' ? user?.firstName || 'Guest' : 'Computer'}
       </p>
-      <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring' }}>
-        <TeamIcon size={80} />
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: 'spring' }}
+        className="flex items-center justify-center"
+      >
+        <TeamIcon size={120} />
       </motion.div>
       <p className="mt-2 font-bold">{team.name}</p>
     </div>

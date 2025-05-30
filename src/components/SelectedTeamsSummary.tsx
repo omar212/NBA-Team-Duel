@@ -1,7 +1,7 @@
-import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 import * as NBAIcons from 'react-nba-logos'
 import { motion } from 'framer-motion'
 import { Link } from '@tanstack/react-router'
+import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -47,6 +47,9 @@ export default function SelectedTeamsSummary() {
         gap-2
         z-50
         shadow-xl
+
+        md:m-auto
+        lg:m-auto
       "
     >
       {selectedTeams.length === 0 ? (
@@ -67,7 +70,7 @@ export default function SelectedTeamsSummary() {
               <motion.div
                 key={team.id}
                 variants={cardVariants}
-                className="flex flex-col items-center border rounded-xl p-2 bg-black text-white"
+                className="flex flex-col items-center border rounded-xl p-1 bg-black text-white md:p-2 lg:p-3"
               >
                 <div className="relative">
                   <TeamIcon size={50} />

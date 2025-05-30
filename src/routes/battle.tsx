@@ -126,18 +126,39 @@ function BattleComponent() {
   const computerTeam = randomTeams[currentRound]
 
   return (
-    <div className="bg-[#1D428A] h-screen flex flex-col items-center justify-center text-white">
-      <h2 className="text-2xl font-bold mb-4">
-        NBA Team Duel (Round {currentRound + 1}) - Season {season}
-      </h2>
-      <div className="flex justify-between w-full max-w-4xl">
+    <div
+      className="
+      bg-[#1D428A] 
+      h-full
+      min-h-screen
+      flex 
+      flex-col 
+      items-center 
+      justify-around 
+      text-white
+      p-5
+
+      md:justify-center
+      lg:justify-center
+      
+      
+      "
+    >
+      <div className="flex flex-col gap-2 text-center">
+        <h2 className="text-2xl font-bold mb-4">NBA Team Duel</h2>
+        <span className="text-xl">Round {currentRound + 1}</span>
+        <p className="text-md text-gray-200">Season {season}</p>
+      </div>
+      <div className="flex justify-between gap-2 w-full max-w-4xl">
         <TeamSide team={userTeam} role="user" />
-        <div className="flex flex-col justify-between items-center">
-          <p className="text-xl">Tournament Series</p>
-          <p className="text-3xl font-bold">
-            {userTournamentPoints} - {computerTournamentPoints}
-          </p>
-          <GameResultText currentRound={currentRound} />
+        <div className="flex flex-col justify-between w-full h-full gap-4 items-center">
+          <div className="flex flex-col items-center">
+            <p className="mt-2 mb-2 text-xl text-center">Tournament Series</p>
+            <p className="text-3xl font-bold text-center">
+              {userTournamentPoints} - {computerTournamentPoints}
+            </p>
+            <GameResultText currentRound={currentRound} />
+          </div>
         </div>
         <TeamSide team={computerTeam} role="computer" />
       </div>
@@ -157,9 +178,9 @@ function BattleComponent() {
       ) : (
         <button
           onClick={handleResetGame}
-          className="mt-4 px-4 py-2 border border-white rounded shadow-lg shadow-black/50 bg-white text-black hover:bg-gray-100 cursor-pointer font-bold"
+          className="bg-[#FDB927] mt-4 px-4 py-2 border border-white rounded shadow-lg shadow-black/50 text-black hover:bg-gray-100 cursor-pointer font-bold"
         >
-          Reset Game
+          Play Again ?
         </button>
       )}
     </div>

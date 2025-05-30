@@ -1,67 +1,64 @@
 import { motion } from 'framer-motion'
-import { useBattleResultsStore } from '@/stores/battleResultsStore'
 import { useUser } from '@clerk/clerk-react'
 import Confetti from 'react-confetti'
+import { useBattleResultsStore } from '@/stores/battleResultsStore'
 
-const GameResultText = ({ currentRound }: { currentRound: number }) => {
+interface GameResultTextProps {
+  currentRound: number
+}
+
+const GameResultText = ({ currentRound }: GameResultTextProps) => {
   const {
     userRoundPoints,
     computerRoundPoints,
     userTournamentPoints,
     computerTournamentPoints,
   } = useBattleResultsStore()
+
   const { user } = useUser()
+  const userName = user?.firstName || 'Guest'
 
-  const checkUser = user?.firstName ? `${user.firstName}` : 'Guest'
-
-  const baseStyle = 'font-extrabold p-2 rounded-lg'
-  const roundTextColor =
-    userRoundPoints > computerRoundPoints
-      ? 'bg-white text-[#1D428A]'
-      : computerRoundPoints > userRoundPoints
-        ? 'bg-[#C8102E] text-white'
-        : 'bg-gray-900 text-white'
-
-  const tournamentTextColor =
-    userTournamentPoints > computerTournamentPoints
-      ? 'bg-[#1D428A] text-white'
-      : computerTournamentPoints > userTournamentPoints
-        ? 'bg-[#C8102E] text-white'
-        : 'bg-gray-900 text-white'
-
-  if (currentRound === 4) {
-    return (
-      <>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className={`${baseStyle} text-2xl ${tournamentTextColor}`}
-        >
-          {userTournamentPoints > computerTournamentPoints
-            ? checkUser + ' wins the tournament !'
-            : computerTournamentPoints > userTournamentPoints
-              ? 'Computer wins the tournament !'
-              : 'The tournament is a tie !'}
-        </motion.p>
-        {userTournamentPoints > computerTournamentPoints && <Confetti />}
-      </>
-    )
+  const getWinner = (
+    userPoints: number,
+    computerPoints: number,
+    isTournament: boolean,
+  ) => {
+    if (userPoints > computerPoints)
+      return `${userName} wins ${isTournament ? 'the tournament!' : 'this round!'}`
+    if (computerPoints > userPoints)
+      return `Computer wins ${isTournament ? 'the tournament!' : 'this round!'}`
+    return isTournament ? 'The tournament is a tie!' : "It's a tie!"
   }
 
+  const isTournamentEnd = currentRound === 4
+  const userPoints = isTournamentEnd ? userTournamentPoints : userRoundPoints
+  const computerPoints = isTournamentEnd
+    ? computerTournamentPoints
+    : computerRoundPoints
+
+  const getTextColor = () => {
+    if (userPoints > computerPoints)
+      return isTournamentEnd
+        ? 'bg-[#1D428A] text-white'
+        : 'bg-white text-[#1D428A]'
+    if (computerPoints > userPoints) return 'bg-[#C8102E] text-white'
+    return 'bg-gray-900 text-white'
+  }
+
+  const resultText = getWinner(userPoints, computerPoints, isTournamentEnd)
+
   return (
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`${baseStyle} text-xl ${roundTextColor}`}
-    >
-      {userRoundPoints > computerRoundPoints
-        ? checkUser + ' wins this round !'
-        : computerRoundPoints > userRoundPoints
-          ? 'Computer wins this round !'
-          : "It's a tie !"}
-    </motion.p>
+    <>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className={`min-w-32 mt-2 font-extrabold p-2 text-center rounded-lg text-[1rem] md:text-base lg:text-lg text-xl md:text-2xl lg:text-3xl ${getTextColor()}`}
+      >
+        {resultText}
+      </motion.p>
+      {isTournamentEnd && userPoints > computerPoints && <Confetti />}
+    </>
   )
 }
 
