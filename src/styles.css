@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+body {
+  @apply m-0;
+  font-family: 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+}
