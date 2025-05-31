@@ -62,12 +62,14 @@ export default function SelectedTeamsSummary() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          data-testid="selected-teams"
         >
           {selectedTeams.map((team) => {
             const TeamIcon =
               NBAIcons[team.abbreviation as keyof typeof NBAIcons]
             return (
               <motion.div
+                data-testid={`team-selected-${team.id}`}
                 key={team.id}
                 variants={cardVariants}
                 className="flex flex-col items-center border rounded-xl p-1 bg-black text-white md:p-2 lg:p-3"
@@ -83,11 +85,12 @@ export default function SelectedTeamsSummary() {
                       w-5 h-5 flex justify-center items-center text-xs
                     "
                     onClick={() => removeTeam(team.id)}
+                    data-testid={`remove-team-button-${team.id}`}
                   >
                     X
                   </button>
                 </div>
-                <p className="text-sm mt-1">{team.name}</p>
+                <p className="text-sm mt-1" data-testid={`team-name-${team.id}`}>{team.name}</p>
               </motion.div>
             )
           })}
@@ -95,7 +98,7 @@ export default function SelectedTeamsSummary() {
       )}
       {selectedTeams.length === 5 && (
         <Link
-          to="/battle"
+          to="/tournament"
           className="bg-[#1D428A] hover:bg-[#1D428A]/80 text-white font-extrabold rounded-xl p-2"
         >
           It's Time to Ball!

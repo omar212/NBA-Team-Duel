@@ -6,11 +6,13 @@ export type Division =
   | 'Southwest'
   | 'Atlantic'
 
+export type Conference = 'East' | 'West'
+
 export interface Team {
   id: number
   abbreviation: string
   city: string
-  conference: 'East' | 'West'
+  conference: Conference
   division: Division
   full_name: string
   name: string

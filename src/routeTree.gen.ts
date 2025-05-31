@@ -11,14 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as BattleImport } from './routes/battle'
+import { Route as TournamentImport } from './routes/tournament'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const BattleRoute = BattleImport.update({
-  id: '/battle',
-  path: '/battle',
+const TournamentRoute = TournamentImport.update({
+  id: '/tournament',
+  path: '/tournament',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/battle': {
-      id: '/battle'
-      path: '/battle'
-      fullPath: '/battle'
-      preLoaderRoute: typeof BattleImport
+    '/tournament': {
+      id: '/tournament'
+      path: '/tournament'
+      fullPath: '/tournament'
+      preLoaderRoute: typeof TournamentImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/battle': typeof BattleRoute
+  '/tournament': typeof TournamentRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/battle': typeof BattleRoute
+  '/tournament': typeof TournamentRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/battle': typeof BattleRoute
+  '/tournament': typeof TournamentRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/battle'
+  fullPaths: '/' | '/tournament'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/battle'
-  id: '__root__' | '/' | '/battle'
+  to: '/' | '/tournament'
+  id: '__root__' | '/' | '/tournament'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BattleRoute: typeof BattleRoute
+  TournamentRoute: typeof TournamentRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BattleRoute: BattleRoute,
+  TournamentRoute: TournamentRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/battle"
+        "/tournament"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/battle": {
-      "filePath": "battle.tsx"
+    "/tournament": {
+      "filePath": "tournament.tsx"
     }
   }
 }

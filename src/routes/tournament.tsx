@@ -5,18 +5,18 @@ import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 import { useTournamentStore } from '@/stores/useTournamentStore'
 import { useGames } from '@/hooks/useGames'
 import { useGameStore } from '@/stores/gameStore'
-import TeamBattle from '@/components/TeamBattle'
-import TeamSide from '@/components/TeamSide'
+import TeamBattle from '@/components/TournamentComponents/TeamBattle'
+import TeamSide from '@/components/TournamentComponents/TeamSide'
 import { useBattleResultsStore } from '@/stores/battleResultsStore'
 import { getMostFrequentOpponentId } from '@/helper/getMostFrequent'
 import { findOpponentTeamDetails } from '@/helper/findOpponent'
-import GameResultText from '@/components/GameResultText'
+import GameResultText from '@/components/TournamentComponents/GameResultText'
 
-export const Route = createFileRoute('/battle')({
-  component: BattleComponent,
+export const Route = createFileRoute('/tournament')({
+  component: TournamentComponent,
 })
 
-function BattleComponent() {
+function TournamentComponent() {
   const { selectedTeams, resetTeams } = useSelectedTeamsStore()
   const { addRandomTeam, randomTeams, resetTournament } = useTournamentStore()
 

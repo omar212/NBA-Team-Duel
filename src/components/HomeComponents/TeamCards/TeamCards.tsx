@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as NBAIcons from 'react-nba-logos'
 import { motion } from 'framer-motion'
-import { useTeams } from '../hooks/useTeams'
+import { useTeams } from '../../../hooks/useTeams'
 import type { Team } from '@/types/Team'
 import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 
@@ -92,6 +92,7 @@ export default function TeamCards() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        role="team-cards"
       >
         {filteredTeams?.map((team: Team) => {
           const TeamIcon = NBAIcons[team.abbreviation as keyof typeof NBAIcons]
@@ -99,6 +100,7 @@ export default function TeamCards() {
 
           return (
             <motion.div
+              data-testid={`team-card-${team.id}`}
               key={team.id}
               variants={cardVariants}
               className={`
@@ -115,6 +117,9 @@ export default function TeamCards() {
                   selectTeam(team)
                 }
               }}
+              role="team-card"
+              aria-selected={isSelected}
+              tabIndex={isSelected ? 0 : -1}
             >
               <TeamIcon />
               <h2 className="text-white font-extrabold text-lg">{team.name}</h2>
