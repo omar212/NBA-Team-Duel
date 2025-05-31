@@ -16,7 +16,10 @@ export default function TeamSide({
   return (
     <div className="h-full w-full  flex flex-col items-center justify-center align-center m-auto">
       <p className="font-semibold mb-2">
-        Team {role === 'user' ? user?.firstName || 'Guest' : 'Computer'}
+        TEAM{' '}
+        {role === 'user'
+          ? user?.firstName?.toUpperCase() || 'GUEST'
+          : 'COMPUTER'}
       </p>
       <motion.div
         whileHover={{ scale: 1.1 }}
@@ -25,7 +28,7 @@ export default function TeamSide({
       >
         <TeamIcon size={120} />
       </motion.div>
-      <p className="mt-2 font-bold">{team.name}</p>
+      <p className="mt-2 font-bold">{team.name.toUpperCase()}</p>
     </div>
   )
 }

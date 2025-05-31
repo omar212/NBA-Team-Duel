@@ -118,7 +118,7 @@ function TournamentComponent() {
     return (
       <div className="bg-[#1D428A] h-screen flex flex-col items-center gap-2 justify-center text-white">
         <FaSpinner className="animate-spin text-3xl" />
-        <p>Loading matchups...</p>
+        <p>LOADING MATCHUPS...</p>
       </div>
     )
   }
@@ -145,15 +145,17 @@ function TournamentComponent() {
       "
     >
       <div className="flex flex-col gap-2 text-center">
-        <h2 className="text-2xl font-bold mb-4">NBA Team Duel</h2>
-        <span className="text-xl">Round {currentRound + 1}</span>
-        <p className="text-md text-gray-200">Season {season}</p>
+        <h2 className="border-b border-t border-white rounded p-2 text-2xl font-bold mb-4">
+          NBA TOURNAMENT
+        </h2>
+        <span className="text-xl">ROUND {currentRound + 1}</span>
+        <p className="text-md text-gray-200">SEASON {season}</p>
       </div>
       <div className="flex justify-between gap-2 w-full max-w-4xl">
         <TeamSide team={userTeam} role="user" />
         <div className="flex flex-col justify-between w-full h-full gap-4 items-center">
           <div className="flex flex-col items-center">
-            <p className="mt-2 mb-2 text-xl text-center">Tournament Series</p>
+            <p className="mt-2 mb-2 text-xl text-center">TOURNAMENT SERIES</p>
             <p className="text-3xl font-bold text-center">
               {userTournamentPoints} - {computerTournamentPoints}
             </p>
@@ -173,7 +175,7 @@ function TournamentComponent() {
           onClick={handleNextRound}
           className="mt-4 px-4 py-2 border border-white rounded shadow-lg shadow-black/50 bg-white text-black hover:bg-gray-100 cursor-pointer font-bold"
         >
-          Next Round
+          NEXT ROUND
         </button>
       ) : (
         <button

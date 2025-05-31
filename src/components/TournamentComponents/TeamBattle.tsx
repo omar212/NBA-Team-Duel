@@ -151,11 +151,11 @@ function TeamBattle({ userTeam, opponentTeam, games, round }: TeamBattleProps) {
                 >
                   {result.winner === 'user'
                     ? user?.firstName
-                      ? `${user.firstName} wins`
-                      : 'You win'
+                      ? `${user.firstName.toUpperCase()} WINS`
+                      : 'YOU WIN'
                     : result.winner === 'computer'
-                      ? 'Computer wins'
-                      : 'Tie'}
+                      ? 'COMPUTER WINS'
+                      : 'TIE'}
                 </span>
                 <div className="flex items-center justify-center gap-2">
                   <UserTeamIcon size={30} />

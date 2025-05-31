@@ -24,10 +24,10 @@ const GameResultText = ({ currentRound }: GameResultTextProps) => {
     isTournament: boolean,
   ) => {
     if (userPoints > computerPoints)
-      return `${userName} wins ${isTournament ? 'the tournament!' : 'this round!'}`
+      return `${userName.toUpperCase()} WINS ${isTournament ? 'THE TOURNAMENT!' : 'THIS ROUND!'}`
     if (computerPoints > userPoints)
-      return `Computer wins ${isTournament ? 'the tournament!' : 'this round!'}`
-    return isTournament ? 'The tournament is a tie!' : "It's a tie!"
+      return `COMPUTER WINS ${isTournament ? 'THE TOURNAMENT!' : 'THIS ROUND!'}`
+    return isTournament ? 'THE TOURNAMENT IS A TIE!' : "IT'S A TIE!"
   }
 
   const isTournamentEnd = currentRound === 4
