@@ -39,7 +39,7 @@ const GameResultText = ({ currentRound }: GameResultTextProps) => {
   const getTextColor = () => {
     if (userPoints > computerPoints)
       return isTournamentEnd
-        ? 'bg-[#1D428A] text-white'
+        ? 'bg-white text-[#1D428A]'
         : 'bg-white text-[#1D428A]'
     if (computerPoints > userPoints) return 'bg-[#C8102E] text-white'
     return 'bg-gray-900 text-white'
