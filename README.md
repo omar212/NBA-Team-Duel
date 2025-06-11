@@ -14,6 +14,7 @@ This project is part of a frontend engineering take-home challenge for a role ap
 - Tournament history tracking and results display.
 - Smooth UI transitions powered by Framer Motion.
 - Responsive design optimized for desktop and mobile browsers.
+- Automatic win/loss/tie tracking synced to Supabase for logged-in users (one update per tournament).
 
 ## Tech Stack 🛠️
 
