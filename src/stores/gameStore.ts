@@ -11,11 +11,11 @@ interface Game {
 
 interface GameState {
   season: number | null
-  games: Game[]
+  games: Array<Game>
   setSeason: (season: number) => void
-  setGames: (games: Game[]) => void
+  setGames: (games: Array<Game>) => void
   resetGames: () => void
-  getMatchups: (teamAId: number, teamBId: number) => Game[]
+  getMatchups: (teamAId: number, teamBId: number) => Array<Game>
 }
 
 export const useGameStore = create<GameState>()(

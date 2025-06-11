@@ -14,7 +14,7 @@ export interface MatchupResult {
 export const useMatchupResults = (
   userTeam: Team,
   computerTeam: Team,
-  games: Game[],
+  games: Array<Game>,
 ) => {
   return useMemo(() => {
     const matchupGames = games.filter(
@@ -25,7 +25,7 @@ export const useMatchupResults = (
           game.visitor_team.id === userTeam.id),
     )
 
-    const results: MatchupResult[] = matchupGames.map((game) => {
+    const results: Array<MatchupResult> = matchupGames.map((game) => {
       const userIsHome = game.home_team.id === userTeam.id
 
       const userTeamScore = userIsHome

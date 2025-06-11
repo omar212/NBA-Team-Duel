@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
+import { useUser } from '@clerk/clerk-react'
 import { useSelectedTeamsStore } from '@/stores/selectedTeamStore'
 import { useTournamentStore } from '@/stores/useTournamentStore'
 import { useGames } from '@/hooks/useGames'
@@ -32,6 +33,8 @@ function TournamentComponent() {
   const [fetchEnabled, setFetchEnabled] = useState(false)
   const { season, setSeason, games, setGames, resetGames } = useGameStore()
   const navigate = useNavigate()
+  const { user } = useUser()
+  const userId = user?.id
 
   useEffect(() => {
     if (!season) setSeason(getRandomSeason())
@@ -99,6 +102,7 @@ function TournamentComponent() {
     setCurrentRound(0)
     setBattleStarted(false)
     navigate({ to: '/' })
+    localStorage.removeItem(`tournament-updated-${userId}`)
   }
 
   if (!battleStarted) {

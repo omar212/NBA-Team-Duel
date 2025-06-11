@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { useUser } from '@clerk/clerk-react'
 import Confetti from 'react-confetti'
+import { useEffect } from 'react'
 import { useBattleResultsStore } from '@/stores/battleResultsStore'
+import { useUpdateTournamentResult } from '@/hooks/useUpdateTournamentResult'
 
 interface GameResultTextProps {
   currentRound: number
@@ -46,6 +48,22 @@ const GameResultText = ({ currentRound }: GameResultTextProps) => {
   }
 
   const resultText = getWinner(userPoints, computerPoints, isTournamentEnd)
+
+  const { mutate, isPending, isError, isSuccess } = useUpdateTournamentResult()
+
+  useEffect(() => {
+    if (isTournamentEnd) {
+      if (userTournamentPoints > computerTournamentPoints) {
+        mutate('wins')
+      } else if (userTournamentPoints < computerTournamentPoints) {
+        mutate('losses')
+      } else {
+        mutate('ties')
+      }
+    }
+  }, [isTournamentEnd, userTournamentPoints, computerTournamentPoints])
+
+  console.log(isPending, isError, isSuccess)
 
   return (
     <>

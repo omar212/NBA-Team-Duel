@@ -11,8 +11,8 @@ interface MatchupHistory {
 }
 
 interface TournamentState {
-  randomTeams: Team[]
-  matchupsHistory: MatchupHistory[]
+  randomTeams: Array<Team>
+  matchupsHistory: Array<MatchupHistory>
   addRandomTeam: (team: Team) => void
   addMatchupHistory: (matchup: MatchupHistory) => void
   resetTournament: () => void

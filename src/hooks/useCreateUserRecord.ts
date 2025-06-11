@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useUser } from '@clerk/clerk-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import supabase from '../utils/supabase'
+import { resetGame } from '@/hooks/useResetGame'
 
 const fetchUserRecord = async (clerkUserId: string) => {
   const { data, error } = await supabase
@@ -34,6 +35,7 @@ const createUserRecord = async (
       clerk_user_id: clerkUserId,
       wins: 0,
       losses: 0,
+      ties: 0,
       first_name: firstName,
       last_name: lastName,
       email: email,
@@ -83,9 +85,25 @@ export const useCreateUserRecord = () => {
   }, [
     isSignedIn,
     user?.id,
-    user?.firstName,
     existingUserRecord,
     isFetching,
     createMutation.isPending,
   ])
+
+  // Clear localStorage + reset stores when user signs out
+  useEffect(() => {
+    if (!isSignedIn && isLoaded) {
+      console.log(
+        '👋 User signed out — clearing localStorage and resetting game',
+      )
+      resetGame()
+    }
+  }, [isSignedIn, isLoaded])
+
+  return {
+    wins: existingUserRecord?.wins || 0,
+    losses: existingUserRecord?.losses || 0,
+    ties: existingUserRecord?.ties || 0,
+    isLoading: isFetching || createMutation.isPending,
+  }
 }
